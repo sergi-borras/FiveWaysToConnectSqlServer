@@ -3,9 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentDAO", "StudentDAO\StudentDAO.csproj", "{4C4CB793-D3BD-4B7E-A247-E2F56FE946B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentDAOTests", "StudentDAOTests\StudentDAOTests.csproj", "{4BA435E4-25AB-4C6F-A24A-9B13FDE786BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1st Exercice", "1st Exercice", "{812CC541-F085-4A53-86BB-4D3C65F8F955}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C4CB793-D3BD-4B7E-A247-E2F56FE946B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C4CB793-D3BD-4B7E-A247-E2F56FE946B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C4CB793-D3BD-4B7E-A247-E2F56FE946B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C4CB793-D3BD-4B7E-A247-E2F56FE946B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BA435E4-25AB-4C6F-A24A-9B13FDE786BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BA435E4-25AB-4C6F-A24A-9B13FDE786BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BA435E4-25AB-4C6F-A24A-9B13FDE786BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BA435E4-25AB-4C6F-A24A-9B13FDE786BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C4CB793-D3BD-4B7E-A247-E2F56FE946B3} = {812CC541-F085-4A53-86BB-4D3C65F8F955}
+		{4BA435E4-25AB-4C6F-A24A-9B13FDE786BA} = {812CC541-F085-4A53-86BB-4D3C65F8F955}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EFA0F11E-F343-4E41-B401-0993F5B9E460}
