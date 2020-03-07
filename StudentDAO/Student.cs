@@ -11,14 +11,15 @@ namespace StudentDAO
         public int Id;
         public string Name;
         public string Surname;
-        public DateTime DateOfBirth;
+        public DateTime Birthdate;
 
-        public Student(int id, string name, string surname, DateTime dateOfBirth)
+        public Student(string name, string surname, DateTime birthDate)
         {
-            Id = id;
             Name = name;
             Surname = surname;
-            DateOfBirth = dateOfBirth;
+            Birthdate = birthDate;
         }
+
+        public Student() { }
     }
 }
