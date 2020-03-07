@@ -138,4 +138,7 @@
   <data name="surnameQueryParam" xml:space="preserve">
     <value>@studentSurname</value>
   </data>
+  <data name="updateQuery" xml:space="preserve">
+    <value>UPDATE dbo.Student SET Name=@studentName, Surname=@studentSurname,Birthday=@studentBirthdate WHERE StudentId=@id</value>
+  </data>
 </root>

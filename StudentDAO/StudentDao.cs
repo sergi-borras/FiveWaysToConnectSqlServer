@@ -17,7 +17,18 @@ namespace StudentDAO
             command.Command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
             command.Command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
             connection.OpenConnection();
-            var result = command.Command.ExecuteNonQuery();
+            command.Command.ExecuteNonQuery();
+            connection.CloseConnection();
+        }
+        public void Update(Student student, int id)
+        {
+            CommandSql command = new CommandSql(Resources.updateQuery, connection);
+            command.Command.Parameters.AddWithValue(Resources.idQueryParam, id);
+            command.Command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
+            command.Command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
+            command.Command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
+            connection.OpenConnection();
+            command.Command.ExecuteNonQuery();
             connection.CloseConnection();
         }
         public Student SelectStudentById(int id)

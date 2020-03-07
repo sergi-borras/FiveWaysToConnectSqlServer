@@ -122,5 +122,14 @@ namespace StudentDAO {
                 return ResourceManager.GetString("surnameQueryParam", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a UPDATE dbo.Student SET Name=@studentName, Surname=@studentSurname,Birthday=@studentBirthdate WHERE StudentId=@id.
+        /// </summary>
+        internal static string updateQuery {
+            get {
+                return ResourceManager.GetString("updateQuery", resourceCulture);
+            }
+        }
     }
 }
