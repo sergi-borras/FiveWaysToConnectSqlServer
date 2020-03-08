@@ -79,6 +79,15 @@ namespace StudentDAO {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a DELETE FROM dbo.Students.
+        /// </summary>
+        internal static string deleteAllQuery {
+            get {
+                return ResourceManager.GetString("deleteAllQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a DELETE FROM dbo.Students WHERE StudentId=@Id.
         /// </summary>
         internal static string deleteQuery {

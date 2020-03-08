@@ -123,6 +123,9 @@
   <data name="createQuery" xml:space="preserve">
     <value>INSERT INTO dbo.Students (Name, Surname, Birthday) VALUES(@studentName, @studentSurname, @studentBirthdate)</value>
   </data>
+  <data name="deleteAllQuery" xml:space="preserve">
+    <value>DELETE FROM dbo.Students</value>
+  </data>
   <data name="deleteQuery" xml:space="preserve">
     <value>DELETE FROM dbo.Students WHERE StudentId=@Id</value>
   </data>
