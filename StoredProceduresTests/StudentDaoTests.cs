@@ -36,5 +36,13 @@ namespace StoredProcedures.Tests
             Student testStudent = manager.SelectStudentById(idToCheck);
             Assert.AreEqual("Update1", testStudent.Name);
         }
+        [TestMethod()]
+        public void DeleteTest()
+        {
+            int idToCheck = 27;
+            manager.Delete(idToCheck);
+            Student testStudent = manager.SelectStudentById(idToCheck);
+            Assert.IsTrue(testStudent == null);
+        }
     }
 }
