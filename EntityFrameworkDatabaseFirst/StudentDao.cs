@@ -17,6 +17,13 @@ namespace EntityFrameworkDatabaseFirst
 			return student;
 		}
 
-		
+		public List<Student> Read()
+		{
+			var students = context.Students.ToList();
+			return students;
+		}
+
+
+
 	}
 }
