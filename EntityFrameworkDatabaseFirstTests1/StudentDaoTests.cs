@@ -24,5 +24,21 @@ namespace EntityFrameworkDatabaseFirst.Tests
 			Assert.AreEqual(spected, student);
 		}
 
+		[TestMethod()]
+		public void ReadTest()
+		{
+			studentDao = new StudentDao();
+			var result = studentDao.Read();
+			Assert.IsTrue(result != null);
+		}
+		[TestMethod()]
+		public void ReadWithValuesTest()
+		{
+			studentDao = new StudentDao();
+			var result = studentDao.Read();
+			Assert.IsTrue(result.Count() > 0);
+		}
+
+
 	}
 }
