@@ -24,5 +24,12 @@ namespace EntityFrameworkCodeFirst
 			Surname = surname;
 			DateOfBirth = dateOfBirth;
 		}
+
+		public Student() { }
+
+		public override string ToString()
+		{
+			return "id: " + Id + ", name: " + Name + ", surname: " + Surname + ", DateOfBirth: " + DateOfBirth;
+		}
 	}
 }

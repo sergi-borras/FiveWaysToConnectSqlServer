@@ -1,22 +1,27 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EntityFrameworkCodeFirst
 {
 	public class StudentDao
 	{
+		private VuelingDbContext context = new VuelingDbContext();
+
 		public Student Create(Student student)
 		{
-			using (var context = new VuelingDbContext())
-			{
-				context.Students.Add(student);
-				context.SaveChanges();
-			}
+
+			context.Students.Add(student);
+			context.SaveChanges();
 			return student;
 		}
 
-		
+		public List<Student> Read()
+		{
+			var students = context.Students.ToList();
+			return students;
+		}
+
 	}
 }
