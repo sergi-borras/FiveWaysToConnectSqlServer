@@ -132,6 +132,9 @@
   <data name="nameProcedureParam" xml:space="preserve">
     <value>@studentName</value>
   </data>
+  <data name="readProcedure" xml:space="preserve">
+    <value>dbo.ReadStudents</value>
+  </data>
   <data name="selectStudentByIdProcedure" xml:space="preserve">
     <value>dbo.SelectStudentById</value>
   </data>

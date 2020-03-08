@@ -106,6 +106,15 @@ namespace StoredProcedures {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a dbo.ReadStudents.
+        /// </summary>
+        internal static string readProcedure {
+            get {
+                return ResourceManager.GetString("readProcedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a dbo.SelectStudentById.
         /// </summary>
         internal static string selectStudentByIdProcedure {
