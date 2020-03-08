@@ -35,7 +35,26 @@ namespace EntityFrameworkCodeFirst.Tests
 		{
 			studentDao = new StudentDao();
 			var result = studentDao.Read();
-			Assert.IsTrue(result.Count() >  0);
+			Assert.IsTrue(result.Count() > 0);
+		}
+
+		[TestMethod()]
+		public void UpdateTest()
+		{
+			studentDao = new StudentDao();
+			student = new Student(1, "D", "J", new DateTime(2000, 10, 10));
+			var spected = studentDao.Update(student);
+			Assert.AreEqual(student.ToString(), student.ToString());
+		}
+
+		[TestMethod()]
+		public void DeleteTest()
+		{
+			studentDao = new StudentDao();
+			student = new Student();
+			student.Id = 7;
+			var result = studentDao.Delete(student);
+			Assert.IsTrue(result);
 		}
 	}
 }
