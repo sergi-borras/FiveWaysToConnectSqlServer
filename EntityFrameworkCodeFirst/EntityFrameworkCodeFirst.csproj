@@ -59,6 +59,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="StudentDao.cs" />
     <Compile Include="VuelingDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
