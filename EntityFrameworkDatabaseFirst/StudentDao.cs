@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EntityFrameworkCodeFirst
+namespace EntityFrameworkDatabaseFirst
 {
 	public class StudentDao
 	{
@@ -17,5 +17,6 @@ namespace EntityFrameworkCodeFirst
 			return student;
 		}
 
+		
 	}
 }
