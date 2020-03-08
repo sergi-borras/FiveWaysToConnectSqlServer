@@ -24,6 +24,20 @@ namespace StoredProcedures
                 command.ExecuteNonQuery();
             }
         }
+        public void Update(Student student, int id)
+        {
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.updateProcedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue(Resources.idProcedureParam, id);
+                command.Parameters.AddWithValue(Resources.nameProcedureParam, student.Name);
+                command.Parameters.AddWithValue(Resources.surnameProcedureParam, student.Surname);
+                command.Parameters.AddWithValue(Resources.birthDateProcedureParam, student.Birthdate);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
         public Student SelectStudentById(int id)
         {
             Student result = new Student();
