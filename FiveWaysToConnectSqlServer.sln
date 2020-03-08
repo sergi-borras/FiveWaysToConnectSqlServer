@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3th Exercice", "3th Exercic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCodeFirstTests1", "EntityFrameworkCodeFirstTests1\EntityFrameworkCodeFirstTests1.csproj", "{B8A3D73A-EB8C-4709-8FFC-86A7F1D22475}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2nd", "2nd", "{3AB87BDA-2D43-4241-8637-0FB5DEBED9FD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2nd Exercice", "2nd Exercice", "{3AB87BDA-2D43-4241-8637-0FB5DEBED9FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredProcedures", "StoredProcedures\StoredProcedures.csproj", "{784642A6-D474-4540-8546-457C23C7F7DD}"
 EndProject
