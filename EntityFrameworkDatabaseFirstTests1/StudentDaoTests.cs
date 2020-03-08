@@ -39,6 +39,16 @@ namespace EntityFrameworkDatabaseFirst.Tests
 			Assert.IsTrue(result.Count() > 0);
 		}
 
+		[TestMethod()]
+		public void UpdateTest()
+		{
+			studentDao = new StudentDao();
+			student = new Student();
+			student.Id = 2; student.Name = "D";
+			student.Surname = "J"; student.DateOfBirth = new DateTime(1990, 2, 12);
+			var spected = studentDao.Update(student);
+			Assert.AreEqual(student.ToString(), student.ToString());
+		}
 
 	}
 }

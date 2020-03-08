@@ -23,6 +23,18 @@ namespace EntityFrameworkDatabaseFirst
 			return students;
 		}
 
+		public Student Update(Student student)
+		{
+			var studentToUpdate = context.Students.Find(student.Id);
+			if (studentToUpdate != null)
+			{
+				studentToUpdate.Name = student.Name;
+				studentToUpdate.Surname = student.Surname;
+				studentToUpdate.DateOfBirth = student.DateOfBirth;
+			}
+			context.SaveChanges();
+			return studentToUpdate;
+		}
 
 
 	}
