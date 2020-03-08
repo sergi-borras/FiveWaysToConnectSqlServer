@@ -16,7 +16,7 @@ namespace Dapper.Tests
 		public static Student studentTest2;
 		public static Student studentTest3;
 
-	[ClassInitialize]
+		[ClassInitialize]
 		public static void TestFixtureSetup(TestContext context)
 		{
 			studentTest1 = new Student();
@@ -28,7 +28,7 @@ namespace Dapper.Tests
 		public void Setup()
 		{
 			dapperDao = new DapperDao();
-			
+
 		}
 		[TestMethod()]
 		public void CreateTest()
@@ -38,6 +38,17 @@ namespace Dapper.Tests
 			studentTest1.DateOfBirth = DateTime.Now;
 			dapperDao.Create(studentTest1);
 			Assert.IsTrue(true);
+		}
+
+		[TestMethod()]
+		public void UpdateTest()
+		{
+			studentTest1.Id = 15;
+			studentTest1.Name = "Prueba";
+			studentTest1.Surname = "Update";
+			studentTest1.DateOfBirth = DateTime.Now.AddDays(-5);
+			var spected = dapperDao.Update(studentTest1);
+			Assert.AreEqual(spected, studentTest1);
 		}
 	}
 }

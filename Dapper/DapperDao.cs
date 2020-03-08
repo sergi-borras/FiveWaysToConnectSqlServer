@@ -8,10 +8,17 @@ namespace Dapper
 {
 	public class DapperDao
 	{
+		public readonly StudentContext context = new StudentContext();
+		
 		public Student Create(Student student)
 		{
-			var contenx = new StudentContext();
-			contenx.BulkInsert(student);
+			context.BulkInsert(student);
+			return student;
+		}
+
+		public Student Update(Student student)
+		{
+			context.BulkUpdate(student);
 			return student;
 		}
 	}
