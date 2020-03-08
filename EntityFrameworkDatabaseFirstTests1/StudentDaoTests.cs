@@ -50,5 +50,15 @@ namespace EntityFrameworkDatabaseFirst.Tests
 			Assert.AreEqual(student.ToString(), student.ToString());
 		}
 
+		[TestMethod()]
+		public void DeleteTest()
+		{
+			studentDao = new StudentDao();
+			student = new Student();
+			student.Id = 7;
+			var result = studentDao.Delete(student);
+			Assert.IsTrue(result);
+		}
+
 	}
 }

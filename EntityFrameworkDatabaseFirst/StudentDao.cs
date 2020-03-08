@@ -36,6 +36,16 @@ namespace EntityFrameworkDatabaseFirst
 			return studentToUpdate;
 		}
 
+		public bool Delete(Student student)
+		{
+			var studentToDelete = context.Students.Find(student.Id);
+			if (studentToDelete != null)
+			{
+				context.Students.Remove(studentToDelete);
+				context.SaveChanges();
+			}
+			return (context.Students.Find(student.Id) == null);
+		}
 
 	}
 }
