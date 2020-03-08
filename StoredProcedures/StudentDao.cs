@@ -38,6 +38,17 @@ namespace StoredProcedures
                 command.ExecuteNonQuery();
             }
         }
+        public void Delete(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.deleteProcedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue(Resources.idProcedureParam, id);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
         public Student SelectStudentById(int id)
         {
             Student result = new Student();
