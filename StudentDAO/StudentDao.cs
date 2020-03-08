@@ -103,5 +103,14 @@ namespace StudentDAO
                 }
             }
         }
+        public void DeleteAll()
+        {
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.deleteAllQuery, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
