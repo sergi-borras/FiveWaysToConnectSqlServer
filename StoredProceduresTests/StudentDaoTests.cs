@@ -44,5 +44,19 @@ namespace StoredProcedures.Tests
             Student testStudent = manager.SelectStudentById(idToCheck);
             Assert.IsTrue(testStudent == null);
         }
+        [TestMethod()]
+        public void ReadTest()
+        {
+            Student student1 = new Student("Name1", "Surname1", new DateTime(2001, 01, 01));
+            Student student2 = new Student("Name2", "Surname2", new DateTime(2002, 02, 02));
+            Student student3 = new Student("Name3", "Surname3", new DateTime(2003, 03, 03));
+            Student student4 = new Student("Name4", "Surname4", new DateTime(2004, 04, 04));
+            manager.Create(student1);
+            manager.Create(student2);
+            manager.Create(student3);
+            manager.Create(student4);
+            List<Student> students = manager.Read();
+            Assert.AreEqual(4, students.Count);
+        }
     }
 }
