@@ -16,7 +16,7 @@ namespace StudentDAO.Tests
         {
             Student student = new Student("Name1", "Surname1", new DateTime(2001, 01, 01));
             StudentDao manager = new StudentDao();
-            int idToCheck = 12;
+            int idToCheck = 1;
             manager.Create(student);
             Student testStudent = manager.SelectStudentById(idToCheck);
             Assert.IsNotNull(testStudent);
@@ -27,10 +27,20 @@ namespace StudentDAO.Tests
         {
             Student student = new Student("Update1", "Surname1", new DateTime(2001, 01, 01));
             StudentDao manager = new StudentDao();
-            int idToCheck = 12;
+            int idToCheck = 1;
             manager.Update(student, idToCheck);
             Student testStudent = manager.SelectStudentById(idToCheck);
             Assert.AreEqual("Update1", testStudent.Name);
+        }
+
+        [TestMethod()]
+        public void DeleteTest()
+        {
+            StudentDao manager = new StudentDao();
+            int idToCheck = 1;
+            manager.Delete(idToCheck);
+            Student testStudent = manager.SelectStudentById(idToCheck);
+            Assert.IsTrue(testStudent == null);
         }
     }
 }
