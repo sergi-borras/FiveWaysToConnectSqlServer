@@ -106,6 +106,15 @@ namespace StudentDAO {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a SELECT * FROM dbo.Students.
+        /// </summary>
+        internal static string selectAllQuery {
+            get {
+                return ResourceManager.GetString("selectAllQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a SELECT * FROM dbo.Students WHERE StudentId=@id.
         /// </summary>
         internal static string selectByIdQuery {

@@ -132,6 +132,9 @@
   <data name="nameQueryParam" xml:space="preserve">
     <value>@studentName</value>
   </data>
+  <data name="selectAllQuery" xml:space="preserve">
+    <value>SELECT * FROM dbo.Students</value>
+  </data>
   <data name="selectByIdQuery" xml:space="preserve">
     <value>SELECT * FROM dbo.Students WHERE StudentId=@id</value>
   </data>
