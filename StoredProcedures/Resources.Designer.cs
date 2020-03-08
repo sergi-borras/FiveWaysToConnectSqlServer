@@ -79,6 +79,15 @@ namespace StoredProcedures {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a dbo.DeleteAllStudents.
+        /// </summary>
+        internal static string deleteAllProcedure {
+            get {
+                return ResourceManager.GetString("deleteAllProcedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a dbo.DeleteStudent.
         /// </summary>
         internal static string deleteProcedure {

@@ -123,6 +123,9 @@
   <data name="createProcedure" xml:space="preserve">
     <value>dbo.CreateStudent</value>
   </data>
+  <data name="deleteAllProcedure" xml:space="preserve">
+    <value>dbo.DeleteAllStudents</value>
+  </data>
   <data name="deleteProcedure" xml:space="preserve">
     <value>dbo.DeleteStudent</value>
   </data>
