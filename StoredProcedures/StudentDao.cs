@@ -49,6 +49,36 @@ namespace StoredProcedures
                 command.ExecuteNonQuery();
             }
         }
+        public List<Student> Read()
+        {
+            List<Student> result = new List<Student>();
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(Resources.readProcedure, connection))
+                {
+                    var reader = command.ExecuteReader();
+
+                    int ordId = reader.GetOrdinal("StudentId");
+                    int ordName = reader.GetOrdinal("Name");
+                    int ordSurname = reader.GetOrdinal("Surname");
+                    int ordBirthdate = reader.GetOrdinal("Birthday");
+
+                    while (reader.Read())
+                    {
+                        Student student = new Student
+                        {
+                            Id = reader.GetInt32(ordId),
+                            Name = reader.GetString(ordName),
+                            Surname = reader.GetString(ordSurname),
+                            Birthdate = reader.GetDateTime(ordBirthdate)
+                        };
+                        result.Add(student);
+                    }
+                    return result;
+                }
+            }
+        }
         public Student SelectStudentById(int id)
         {
             Student result = new Student();
