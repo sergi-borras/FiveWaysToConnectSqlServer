@@ -70,11 +70,20 @@ namespace StudentDAO {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a INSERT INTO dbo.Student (Name, Surname, Birthday) VALUES(@studentName, @studentSurname, @studentBirthdate).
+        ///   Busca una cadena traducida similar a INSERT INTO dbo.Students (Name, Surname, Birthday) VALUES(@studentName, @studentSurname, @studentBirthdate).
         /// </summary>
         internal static string createQuery {
             get {
                 return ResourceManager.GetString("createQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a DELETE FROM dbo.Students WHERE StudentId=@Id.
+        /// </summary>
+        internal static string deleteQuery {
+            get {
+                return ResourceManager.GetString("deleteQuery", resourceCulture);
             }
         }
         
@@ -97,7 +106,7 @@ namespace StudentDAO {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a SELECT * FROM dbo.Student WHERE StudentId=@id.
+        ///   Busca una cadena traducida similar a SELECT * FROM dbo.Students WHERE StudentId=@id.
         /// </summary>
         internal static string selectByIdQuery {
             get {
@@ -124,7 +133,7 @@ namespace StudentDAO {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a UPDATE dbo.Student SET Name=@studentName, Surname=@studentSurname,Birthday=@studentBirthdate WHERE StudentId=@id.
+        ///   Busca una cadena traducida similar a UPDATE dbo.Students SET Name=@studentName, Surname=@studentSurname,Birthday=@studentBirthdate WHERE StudentId=@id.
         /// </summary>
         internal static string updateQuery {
             get {

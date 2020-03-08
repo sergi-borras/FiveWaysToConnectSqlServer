@@ -9,46 +9,69 @@ namespace StudentDAO
 {
     public class StudentDao
     {
-        private readonly Connection connection = new Connection();
         public void Create(Student student)
         {
-            CommandSql command = new CommandSql(Resources.createQuery, connection);
-            command.Command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
-            command.Command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
-            command.Command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
-            connection.OpenConnection();
-            command.Command.ExecuteNonQuery();
-            connection.CloseConnection();
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.createQuery, connection);
+                command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
+                command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
+                command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
         public void Update(Student student, int id)
         {
-            CommandSql command = new CommandSql(Resources.updateQuery, connection);
-            command.Command.Parameters.AddWithValue(Resources.idQueryParam, id);
-            command.Command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
-            command.Command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
-            command.Command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
-            connection.OpenConnection();
-            command.Command.ExecuteNonQuery();
-            connection.CloseConnection();
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.updateQuery, connection);
+                command.Parameters.AddWithValue(Resources.idQueryParam, id);
+                command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
+                command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
+                command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void Delete(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.deleteQuery, connection);
+                command.Parameters.AddWithValue(Resources.idQueryParam, id);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
         public Student SelectStudentById(int id)
         {
             Student result = new Student();
-            connection.OpenConnection();
-            CommandSql command = new CommandSql(Resources.selectByIdQuery, connection);
-            command.Command.Parameters.AddWithValue(Resources.idQueryParam, id);
-            using (SqlDataReader reader = command.Command.ExecuteReader())
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
             {
-                while (reader.Read())
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(Resources.selectByIdQuery, connection))
                 {
-                    result.Id = int.Parse(reader[0].ToString());
-                    result.Name = reader[1].ToString();
-                    result.Surname = reader[2].ToString();
-                    result.Birthdate = DateTime.Parse(reader[3].ToString());
+                    command.Parameters.AddWithValue(Resources.idQueryParam, id);
+
+                    var reader = command.ExecuteReader();
+
+                    int ordId = reader.GetOrdinal("StudentId");
+                    int ordName = reader.GetOrdinal("Name");
+                    int ordSurname = reader.GetOrdinal("Surname");
+                    int ordBirthdate = reader.GetOrdinal("Birthday");
+
+                    if (!reader.Read())
+                        return null;
+
+                    result.Id = reader.GetInt32(ordId);
+                    result.Name = reader.GetString(ordName);
+                    result.Surname = reader.GetString(ordSurname);
+                    result.Birthdate = reader.GetDateTime(ordBirthdate);
+
+                    return result;
                 }
             }
-            connection.CloseConnection();
-            return result;
         }
     }
 }

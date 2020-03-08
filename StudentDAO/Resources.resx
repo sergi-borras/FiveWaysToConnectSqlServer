@@ -121,7 +121,10 @@
     <value>@studentBirthdate</value>
   </data>
   <data name="createQuery" xml:space="preserve">
-    <value>INSERT INTO dbo.Student (Name, Surname, Birthday) VALUES(@studentName, @studentSurname, @studentBirthdate)</value>
+    <value>INSERT INTO dbo.Students (Name, Surname, Birthday) VALUES(@studentName, @studentSurname, @studentBirthdate)</value>
+  </data>
+  <data name="deleteQuery" xml:space="preserve">
+    <value>DELETE FROM dbo.Students WHERE StudentId=@Id</value>
   </data>
   <data name="idQueryParam" xml:space="preserve">
     <value>@id</value>
@@ -130,7 +133,7 @@
     <value>@studentName</value>
   </data>
   <data name="selectByIdQuery" xml:space="preserve">
-    <value>SELECT * FROM dbo.Student WHERE StudentId=@id</value>
+    <value>SELECT * FROM dbo.Students WHERE StudentId=@id</value>
   </data>
   <data name="sqlConnection" xml:space="preserve">
     <value>Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password;</value>
@@ -139,6 +142,6 @@
     <value>@studentSurname</value>
   </data>
   <data name="updateQuery" xml:space="preserve">
-    <value>UPDATE dbo.Student SET Name=@studentName, Surname=@studentSurname,Birthday=@studentBirthdate WHERE StudentId=@id</value>
+    <value>UPDATE dbo.Students SET Name=@studentName, Surname=@studentSurname,Birthday=@studentBirthdate WHERE StudentId=@id</value>
   </data>
 </root>
