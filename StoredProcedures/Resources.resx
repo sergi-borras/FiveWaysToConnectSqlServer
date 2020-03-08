@@ -121,7 +121,7 @@
     <value>@studentBirthdate</value>
   </data>
   <data name="createProcedure" xml:space="preserve">
-    <value>dbo.Create</value>
+    <value>dbo.CreateStudent</value>
   </data>
   <data name="idProcedureParam" xml:space="preserve">
     <value>@id</value>
@@ -137,5 +137,8 @@
   </data>
   <data name="surnameProcedureParam" xml:space="preserve">
     <value>@studentSurname</value>
+  </data>
+  <data name="updateProcedure" xml:space="preserve">
+    <value>dbo.UpdateStudent</value>
   </data>
 </root>

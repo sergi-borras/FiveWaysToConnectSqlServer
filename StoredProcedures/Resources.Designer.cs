@@ -70,7 +70,7 @@ namespace StoredProcedures {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a dbo.Create.
+        ///   Busca una cadena traducida similar a dbo.CreateStudent.
         /// </summary>
         internal static string createProcedure {
             get {
@@ -120,6 +120,15 @@ namespace StoredProcedures {
         internal static string surnameProcedureParam {
             get {
                 return ResourceManager.GetString("surnameProcedureParam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a dbo.UpdateStudent.
+        /// </summary>
+        internal static string updateProcedure {
+            get {
+                return ResourceManager.GetString("updateProcedure", resourceCulture);
             }
         }
     }
