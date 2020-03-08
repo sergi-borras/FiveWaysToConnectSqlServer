@@ -109,5 +109,14 @@ namespace StoredProcedures
                 }
             }
         }
+        public void DeleteAll()
+        {
+            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            {
+                SqlCommand command = new SqlCommand(Resources.deleteAllProcedure, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }
