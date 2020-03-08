@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1st Exercice", "1st Exercic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCodeFirst", "EntityFrameworkCodeFirst\EntityFrameworkCodeFirst.csproj", "{75446AAC-A210-423D-854C-63E885397EBD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3th Exercice", "3th Exercice", "{DFE8AA48-2ED3-4B76-BDF3-F8AA0BB31288}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd Exercice", "3rd Exercice", "{DFE8AA48-2ED3-4B76-BDF3-F8AA0BB31288}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCodeFirstTests1", "EntityFrameworkCodeFirstTests1\EntityFrameworkCodeFirstTests1.csproj", "{B8A3D73A-EB8C-4709-8FFC-86A7F1D22475}"
 EndProject
@@ -20,6 +20,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredProcedures", "StoredProcedures\StoredProcedures.csproj", "{784642A6-D474-4540-8546-457C23C7F7DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoredProceduresTests", "StoredProceduresTests\StoredProceduresTests.csproj", "{A789788F-CC68-4B05-8D85-3F0434CBA2D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4th Exercice", "4th Exercice", "{EB8DC03E-9D32-4D36-8BE3-33F3B674F464}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkDatabaseFirst", "EntityFrameworkDatabaseFirst\EntityFrameworkDatabaseFirst.csproj", "{182D4755-0009-46BC-8C0C-11F86ED64F71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkDatabaseFirstTests", "EntityFrameworkDatabaseFirstTests\EntityFrameworkDatabaseFirstTests.csproj", "{F4B06F32-15FE-4096-8871-B99D00CB1664}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,14 @@ Global
 		{A789788F-CC68-4B05-8D85-3F0434CBA2D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A789788F-CC68-4B05-8D85-3F0434CBA2D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A789788F-CC68-4B05-8D85-3F0434CBA2D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{182D4755-0009-46BC-8C0C-11F86ED64F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{182D4755-0009-46BC-8C0C-11F86ED64F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{182D4755-0009-46BC-8C0C-11F86ED64F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{182D4755-0009-46BC-8C0C-11F86ED64F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4B06F32-15FE-4096-8871-B99D00CB1664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B06F32-15FE-4096-8871-B99D00CB1664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B06F32-15FE-4096-8871-B99D00CB1664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B06F32-15FE-4096-8871-B99D00CB1664}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +76,8 @@ Global
 		{B8A3D73A-EB8C-4709-8FFC-86A7F1D22475} = {DFE8AA48-2ED3-4B76-BDF3-F8AA0BB31288}
 		{784642A6-D474-4540-8546-457C23C7F7DD} = {3AB87BDA-2D43-4241-8637-0FB5DEBED9FD}
 		{A789788F-CC68-4B05-8D85-3F0434CBA2D4} = {3AB87BDA-2D43-4241-8637-0FB5DEBED9FD}
+		{182D4755-0009-46BC-8C0C-11F86ED64F71} = {EB8DC03E-9D32-4D36-8BE3-33F3B674F464}
+		{F4B06F32-15FE-4096-8871-B99D00CB1664} = {EB8DC03E-9D32-4D36-8BE3-33F3B674F464}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EFA0F11E-F343-4E41-B401-0993F5B9E460}
