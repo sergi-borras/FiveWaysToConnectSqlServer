@@ -133,15 +133,6 @@ namespace StudentDAO {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password;.
-        /// </summary>
-        internal static string sqlConnection {
-            get {
-                return ResourceManager.GetString("sqlConnection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Busca una cadena traducida similar a @studentSurname.
         /// </summary>
         internal static string surnameQueryParam {
