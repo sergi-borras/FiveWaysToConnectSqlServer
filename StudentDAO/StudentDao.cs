@@ -7,7 +7,7 @@ namespace StudentDAO
     public class StudentDao
     {
         private static readonly string connectionString =
-                ConfigurationManager.ConnectionStrings["SQLServerConnectionString"].ConnectionString;
+            ConfigurationManager.ConnectionStrings["SQLServerConnectionString"].ConnectionString;
         public void Create(Student student)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
