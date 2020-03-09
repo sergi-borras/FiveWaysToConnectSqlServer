@@ -1,115 +1,314 @@
 ﻿using System;
+using System.IO;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace StudentDAO
 {
     public class StudentDao
     {
-        public void Create(Student student)
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(StudentDao));
+        private static readonly string connectionString =
+            ConfigurationManager.ConnectionStrings["SQLServerConnectionString"].ConnectionString;
+        private static readonly Stopwatch stopWatch = new Stopwatch();
+        public Student Create(Student student)
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            stopWatch.Start();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.createQuery, connection);
                 command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
                 command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
                 command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    stopWatch.Stop();
+                    log.Info("Run Time: " + stopWatch.Elapsed);
+                    return student;
+                }
+                catch (InvalidOperationException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (SqlException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (ConfigurationErrorsException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (InvalidCastException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
             }
         }
-        public void Update(Student student, int id)
+        public Student Update(Student student, int id)
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            stopWatch.Start();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.updateQuery, connection);
                 command.Parameters.AddWithValue(Resources.idQueryParam, id);
                 command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
                 command.Parameters.AddWithValue(Resources.surnameQueryParam, student.Surname);
                 command.Parameters.AddWithValue(Resources.birthDateQueryParam, student.Birthdate);
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    stopWatch.Stop();
+                    log.Info("Run Time: " + stopWatch.Elapsed);
+                    return student;
+                }
+                catch (InvalidOperationException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (SqlException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (ConfigurationErrorsException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (InvalidCastException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
             }
         }
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            stopWatch.Start();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.deleteQuery, connection);
                 command.Parameters.AddWithValue(Resources.idQueryParam, id);
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    stopWatch.Stop();
+                    log.Info("Run Time: " + stopWatch.Elapsed);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (SqlException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (ConfigurationErrorsException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (InvalidCastException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
             }
         }
         public List<Student> Read()
         {
+            stopWatch.Start();
             List<Student> result = new List<Student>();
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(Resources.selectAllQuery, connection))
+                try
                 {
-                    var reader = command.ExecuteReader();
-
-                    int ordId = reader.GetOrdinal("StudentId");
-                    int ordName = reader.GetOrdinal("Name");
-                    int ordSurname = reader.GetOrdinal("Surname");
-                    int ordBirthdate = reader.GetOrdinal("Birthday");
-
-                    while (reader.Read())
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(Resources.selectAllQuery, connection))
                     {
-                        Student student = new Student
+                        var reader = command.ExecuteReader();
+
+                        int ordId = reader.GetOrdinal("StudentId");
+                        int ordName = reader.GetOrdinal("Name");
+                        int ordSurname = reader.GetOrdinal("Surname");
+                        int ordBirthdate = reader.GetOrdinal("Birthday");
+
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32(ordId),
-                            Name = reader.GetString(ordName),
-                            Surname = reader.GetString(ordSurname),
-                            Birthdate = reader.GetDateTime(ordBirthdate)
-                        };
-                        result.Add(student);
+                            Student student = new Student
+                            {
+                                Id = reader.GetInt32(ordId),
+                                Name = reader.GetString(ordName),
+                                Surname = reader.GetString(ordSurname),
+                                Birthdate = reader.GetDateTime(ordBirthdate)
+                            };
+                            result.Add(student);
+                        }
+
+                        stopWatch.Stop();
+                        log.Info("Run Time: " + stopWatch.Elapsed);
+
+                        return result;
                     }
-                    return result;
+                }
+                catch (InvalidOperationException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (SqlException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (ConfigurationErrorsException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (InvalidCastException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    log.Error(ex);
+                    throw;
                 }
             }
         }
         public Student SelectStudentById(int id)
         {
+            stopWatch.Start();
             Student result = new Student();
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(Resources.selectByIdQuery, connection))
+                try
                 {
-                    command.Parameters.AddWithValue(Resources.idQueryParam, id);
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(Resources.selectByIdQuery, connection))
+                    {
+                        command.Parameters.AddWithValue(Resources.idQueryParam, id);
 
-                    var reader = command.ExecuteReader();
+                        var reader = command.ExecuteReader();
 
-                    int ordId = reader.GetOrdinal("StudentId");
-                    int ordName = reader.GetOrdinal("Name");
-                    int ordSurname = reader.GetOrdinal("Surname");
-                    int ordBirthdate = reader.GetOrdinal("Birthday");
+                        int ordId = reader.GetOrdinal("StudentId");
+                        int ordName = reader.GetOrdinal("Name");
+                        int ordSurname = reader.GetOrdinal("Surname");
+                        int ordBirthdate = reader.GetOrdinal("Birthday");
 
-                    if (!reader.Read())
-                        return null;
+                        if (!reader.Read())
+                            return null;
 
-                    result.Id = reader.GetInt32(ordId);
-                    result.Name = reader.GetString(ordName);
-                    result.Surname = reader.GetString(ordSurname);
-                    result.Birthdate = reader.GetDateTime(ordBirthdate);
+                        result.Id = reader.GetInt32(ordId);
+                        result.Name = reader.GetString(ordName);
+                        result.Surname = reader.GetString(ordSurname);
+                        result.Birthdate = reader.GetDateTime(ordBirthdate);
 
-                    return result;
+                        stopWatch.Stop();
+                        log.Info("Run Time: " + stopWatch.Elapsed);
+
+                        return result;
+                    }
+                }
+                catch (InvalidOperationException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (SqlException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (ConfigurationErrorsException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (InvalidCastException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    log.Error(ex);
+                    throw;
                 }
             }
         }
         public void DeleteAll()
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            stopWatch.Start();
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.deleteAllQuery, connection);
-                connection.Open();
-                command.ExecuteNonQuery();
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    stopWatch.Stop();
+                    log.Info("Run Time: " + stopWatch.Elapsed);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (SqlException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (ConfigurationErrorsException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (InvalidCastException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
+                catch (IOException ex)
+                {
+                    log.Error(ex);
+                    throw;
+                }
             }
         }
     }
