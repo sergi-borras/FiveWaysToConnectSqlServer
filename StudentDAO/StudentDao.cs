@@ -1,17 +1,16 @@
-﻿using System;
+﻿using System.Configuration;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentDAO
 {
     public class StudentDao
     {
+        private static readonly string connectionString =
+                ConfigurationManager.ConnectionStrings["SQLServerConnectionString"].ConnectionString;
         public void Create(Student student)
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.createQuery, connection);
                 command.Parameters.AddWithValue(Resources.nameQueryParam, student.Name);
@@ -23,7 +22,7 @@ namespace StudentDAO
         }
         public void Update(Student student, int id)
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.updateQuery, connection);
                 command.Parameters.AddWithValue(Resources.idQueryParam, id);
@@ -36,7 +35,7 @@ namespace StudentDAO
         }
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.deleteQuery, connection);
                 command.Parameters.AddWithValue(Resources.idQueryParam, id);
@@ -47,7 +46,7 @@ namespace StudentDAO
         public List<Student> Read()
         {
             List<Student> result = new List<Student>();
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(Resources.selectAllQuery, connection))
@@ -77,7 +76,7 @@ namespace StudentDAO
         public Student SelectStudentById(int id)
         {
             Student result = new Student();
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(Resources.selectByIdQuery, connection))
@@ -105,7 +104,7 @@ namespace StudentDAO
         }
         public void DeleteAll()
         {
-            using (SqlConnection connection = new SqlConnection(Resources.sqlConnection))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(Resources.deleteAllQuery, connection);
                 connection.Open();

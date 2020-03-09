@@ -141,9 +141,6 @@
   <data name="selectByIdQuery" xml:space="preserve">
     <value>SELECT * FROM dbo.Students WHERE StudentId=@id</value>
   </data>
-  <data name="sqlConnection" xml:space="preserve">
-    <value>Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password;</value>
-  </data>
   <data name="surnameQueryParam" xml:space="preserve">
     <value>@studentSurname</value>
   </data>
