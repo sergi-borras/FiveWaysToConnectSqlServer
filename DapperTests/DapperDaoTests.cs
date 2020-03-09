@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dapper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Dapper.Tests
 {
@@ -43,12 +39,20 @@ namespace Dapper.Tests
 		[TestMethod()]
 		public void UpdateTest()
 		{
-			studentTest1.Id = 15;
+			studentTest1.Id = 1;
 			studentTest1.Name = "Prueba";
 			studentTest1.Surname = "Update";
 			studentTest1.DateOfBirth = DateTime.Now.AddDays(-5);
 			var spected = dapperDao.Update(studentTest1);
 			Assert.AreEqual(spected, studentTest1);
+		}
+
+		[TestMethod()]
+		public void ReadTest()
+		{
+			var result = dapperDao.Read();
+			Assert.IsTrue(result.Count() > 0);
+			//Assert.IsTrue(true);
 		}
 	}
 }

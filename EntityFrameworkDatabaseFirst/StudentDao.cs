@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EntityFrameworkDatabaseFirst
 {
 	public class StudentDao
 	{
-		private VuelingDbContext context = new VuelingDbContext();
+		private readonly VuelingDbContext context = new VuelingDbContext();
 
 		public Student Create(Student student)
 		{

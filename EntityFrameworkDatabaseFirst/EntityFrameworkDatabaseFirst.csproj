@@ -79,7 +79,6 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Student.edmx.diagram">
       <DependentUpon>Student.edmx</DependentUpon>

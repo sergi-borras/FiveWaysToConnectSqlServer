@@ -1,25 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Dapper;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Dapper
 {
 	public class DapperDao
 	{
-		public readonly StudentContext context = new StudentContext();
-		
-		public Student Create(Student student)
+		//public readonly StudentContext context = new StudentContext();
+
+		public Student Create(Student studentToCreate)
 		{
-			context.BulkInsert(student);
-			return student;
+
+			using (var connection = new SqlConnection("Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password"))
+			{
+				return studentToCreate;
+			}
 		}
 
-		public Student Update(Student student)
+		public List<Student> Read()
 		{
-			context.BulkUpdate(student);
-			return student;
+			using (IDbConnection connection = new SqlConnection("Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password"))
+			{
+				connection.Open();
+				var students = SqlMapper.Query<Student>(connection, "SELECT * FROM Student").ToList();
+				return students;
+			}
 		}
 	}
+
 }

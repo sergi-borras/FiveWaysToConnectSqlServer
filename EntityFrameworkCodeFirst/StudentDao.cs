@@ -1,20 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EntityFrameworkCodeFirst
 {
 	public class StudentDao
 	{
-		private VuelingDbContext context = new VuelingDbContext();
+		private readonly VuelingDbContext context = new VuelingDbContext();
 
 		public Student Create(Student student)
 		{
 
-			context.Students.Add(student);
+			var studentInserted = context.Students.Add(student);
 			context.SaveChanges();
-			return student;
+			return studentInserted;
 		}
 
 		public List<Student> Read()
