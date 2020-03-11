@@ -7,19 +7,21 @@ using System;
 
 namespace ExerciceDapper
 {
-	public class StudentDao
+	public class StudentDao: IStudentDao<Student>
 	{
 		private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(typeof(StudentDao));
 
-		public Student Create(Student studentToCreate)
+		/// <exception cref="ArgumentNullException">throw</exception>
+		/// <exception cref="InvalidOperationException">throw</exception>
+		public Student Create(Student student)
 		{
 			try
 			{
-				using (var connection = new SqlConnection("Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password"))
+				using (var connection = new SqlConnection(Resources.StringConnection))
 				{
 					var id = SqlMapper.Query<int>(connection,
 						"INSERT INTO Student VALUES(@Name, @Surname, @DateOfBirth); SELECT CAST(SCOPE_IDENTITY() as int)",
-						new { studentToCreate.Name, studentToCreate.Surname, studentToCreate.DateOfBirth }).Single();
+						new { student.Name, student.Surname, student.DateOfBirth }).Single();
 
 					return SqlMapper.Query<Student>(connection, "SELECT * FROM Student WHERE Id = @Id", new { id }).Single();
 				}
@@ -38,16 +40,17 @@ namespace ExerciceDapper
 			}
 		}
 
+		/// <exception cref="ArgumentNullException"></exception>
 		public List<Student> Read()
 		{
 			try
 			{
-				using (IDbConnection connection = new SqlConnection("Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password"))
+				using (IDbConnection connection = new SqlConnection(Resources.StringConnection))
 				{
 					return SqlMapper.Query<Student>(connection, "SELECT * FROM Student").ToList();
 				}
 			}
-			catch (System.ArgumentNullException ane)
+			catch (ArgumentNullException ane)
 			{
 				logger.Error("Error: " + ane.Message);
 				logger.Error("Trace: " + ane.StackTrace);
@@ -55,11 +58,13 @@ namespace ExerciceDapper
 			}
 		}
 
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="InvalidOperationException"></exception>
 		public Student Update(Student student)
 		{
 			try
 			{
-				using (IDbConnection connection = new SqlConnection("Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password"))
+				using (IDbConnection connection = new SqlConnection(Resources.StringConnection))
 				{
 					connection.Query<Student>("UPDATE Student set Name = @Name , Surname = @Surname, DateOfBirth = @DateOfBirth WHERE Id = @Id",
 						new { student.Name, student.Surname, student.DateOfBirth, student.Id });
@@ -81,15 +86,17 @@ namespace ExerciceDapper
 			}
 		}
 
+		/// <exception cref="ArgumentNullException"></exception>
+		/// <exception cref="InvalidOperationException"></exception>
 		public bool Delete(Student student)
 		{
 			try
 			{
-				using (IDbConnection connection = new SqlConnection("Server=localhost,1433;Database=Vueling;User Id=sa;Password=yourStrong(!)Password"))
+				using (IDbConnection connection = new SqlConnection(Resources.StringConnection))
 				{
-					connection.Query<Student>("DELETE FROM Student WHERE Id = @Id", new { student.Id });
 					var result = SqlMapper.Query<Student>(connection, "SELECT * FROM Student WHERE Id = @id", new { student.Id }).SingleOrDefault();
-					return result == null;
+					connection.Query<Student>("DELETE FROM Student WHERE Id = @Id", new { student.Id });
+					return result != null;
 				}
 			}
 			catch (ArgumentNullException ane)
