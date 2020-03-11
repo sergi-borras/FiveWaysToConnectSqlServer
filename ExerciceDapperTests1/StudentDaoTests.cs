@@ -1,56 +1,59 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ExerciceDapper;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExerciceDapper.Tests
 {
 	[TestClass()]
 	public class StudentDaoTests
 	{
+		public static StudentDao studentDao;
+		[TestInitialize]
+		public void Setup()
+		{
+			studentDao = new StudentDao();
+			Student student1 = new Student("Name1", "Surname1", new DateTime(2001, 01, 01));
+			Student student2 = new Student("Name2", "Surname2", new DateTime(2002, 02, 02));
+			Student student3 = new Student("Name3", "Surname3", new DateTime(2003, 03, 03));
+			Student student4 = new Student("Name4", "Surname4", new DateTime(2004, 04, 04));
+			studentDao.Create(student1);
+			studentDao.Create(student2);
+			studentDao.Create(student3);
+			studentDao.Create(student4);
+		}
 		[TestMethod()]
 		public void CreateTest()
 		{
-			StudentDao studentDao = new StudentDao();
-			Student student = new Student();
-			student.Name = "Teresa";
-			student.Surname = "Calvo";
-			student.DateOfBirth = new DateTime(1996, 11, 29);
-			var spected = studentDao.Create(student);
+			Student studentToCreate = new Student("David", "Jimenez", new DateTime(1992, 6, 24));
+			var spected = studentDao.Create(studentToCreate);
 			Assert.IsTrue(spected != null);
 		}
 
 		[TestMethod()]
 		public void ReadTest()
 		{
-			StudentDao dapper = new StudentDao();
-			var result = dapper.Read();
+			var result = studentDao.Read();
 			Assert.IsTrue(result.Count() > 0);
 		}
 
 		[TestMethod()]
 		public void UpdateTest()
 		{
-			StudentDao studentDao = new StudentDao();
-			Student student = new Student();
-			student.Id = 1;
-			student.Name = "Teresa";
-			student.Surname = "Calvo";
-			student.DateOfBirth = new DateTime(1996, 11, 29);
-			var spected = studentDao.Update(student);
+			Student studentToUpdate = new Student();
+			studentToUpdate.Id = 1;
+			studentToUpdate.Name = "Update";
+			studentToUpdate.Surname = "Row";
+			studentToUpdate.DateOfBirth = new DateTime(1996, 11, 29);
+			var spected = studentDao.Update(studentToUpdate);
 			Assert.IsTrue(spected != null);
 		}
 
 		[TestMethod()]
 		public void DeleteTest()
 		{
-			StudentDao studentDao = new StudentDao();
-			Student student = new Student();
-			student.Id = 7;
-			var result = studentDao.Delete(student);
+			Student studentToDelete = new Student();
+			studentToDelete.Id = 2;
+			var result = studentDao.Delete(studentToDelete);
 			Assert.IsTrue(result);
 		}
 	}

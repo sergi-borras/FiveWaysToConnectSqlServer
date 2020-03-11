@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ExerciceDapper
 {
-    public class Class1
-    {
-    }
+	public interface IStudentDao<T>
+	{
+		T Create(T item);
+		List<T> Read();
+		T Update(T item);
+		bool Delete(T item);
+	}
 }
